@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/13 14:54:52 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/13 16:18:03 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBFT_TARGET = ${LIBFT}/libft.a
 MLX_TARGET = ${MLX}/libmlx.a
 
 SRC_FILES = main.c \
-			utils.c
+			utils.c \
+			map.c
 
 NAME = so_long
 
@@ -53,9 +54,11 @@ ${LIBFT_TARGET}:
 
 clean:
 	make clean -C ${MLX}
+	make clean -C ${LIBFT}
 	rm -f ${OBJS}
 
 fclean: clean
+	make fclean -C ${LIBFT}
 	rm -f ${NAME}
 
 re: fclean all

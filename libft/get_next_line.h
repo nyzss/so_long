@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 15:52:22 by okoca            ###   ########.fr       */
+/*   Created: 2024/05/31 11:48:29 by okoca             #+#    #+#             */
+/*   Updated: 2024/06/13 16:14:26 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
-# include "mlx.h"
-# include "libft.h"
+char	*get_next_line(int fd);
 
-typedef struct s_map_data
-{
-	int	player_count;
-	int	collectibles;
-	int	exit;
-	int	height;
-	int	width;
-}	t_map_data;
+char	*move_buf_nl(char *buffer, char **next_line);
 
-void	sl_error_exit(int code, char *message);
+void	*gnl_calloc(size_t n, size_t size);
 
-void	sl_parse_arg(char *arg);
+size_t	gnl_strlen(char *str);
+
+char	*gnl_strjoin(char *old, char *tmp);
+
+char	*gnl_substr(char *s, unsigned int start, size_t len);
+
+int		get_nl(char *buf);
 
 #endif
