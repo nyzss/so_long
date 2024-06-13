@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 14:54:38 by okoca            ###   ########.fr       */
+/*   Created: 2024/02/08 15:03:36 by okoca             #+#    #+#             */
+/*   Updated: 2024/05/21 10:11:22 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <stdio.h>
+char	*ft_strchr(const char *str, int c)
+{
+	int				i;
+	unsigned char	cast;
 
-# include "mlx.h"
-# include "libft.h"
-
-void	sl_error_exit(int code, char *message);
-
-#endif
+	i = 0;
+	cast = (unsigned char) c;
+	while (str[i])
+	{
+		if (str[i] == cast)
+			return ((char *)&str[i]);
+		i++;
+	}
+	if (str[i] == cast)
+		return ((char *)&str[i]);
+	return (NULL);
+}

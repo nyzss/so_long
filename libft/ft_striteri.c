@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
+/*   By: okoca <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 14:54:38 by okoca            ###   ########.fr       */
+/*   Created: 2024/02/08 15:03:36 by okoca             #+#    #+#             */
+/*   Updated: 2024/02/08 15:11:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <stdio.h>
+void	ft_striteri(char *str, void (*f)(unsigned int, char *))
+{
+	int	i;
 
-# include "mlx.h"
-# include "libft.h"
-
-void	sl_error_exit(int code, char *message);
-
-#endif
+	i = 0;
+	if (!str || !f)
+		return ;
+	while (str[i])
+	{
+		f(i, &str[i]);
+		i++;
+	}
+}

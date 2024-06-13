@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 14:54:38 by okoca            ###   ########.fr       */
+/*   Created: 2024/05/19 23:13:18 by okoca             #+#    #+#             */
+/*   Updated: 2024/05/23 09:04:22 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <stdio.h>
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
 
-# include "mlx.h"
-# include "libft.h"
-
-void	sl_error_exit(int code, char *message);
-
-#endif
+	tmp = *lst;
+	*lst = new;
+	new->next = tmp;
+}

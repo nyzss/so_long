@@ -5,33 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/13 14:54:52 by okoca            ###   ########.fr        #
+#    Created: 2024/05/20 14:28:24 by okoca             #+#    #+#              #
+#    Updated: 2024/05/30 20:34:28 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRC_DIR = src/
+SRC_DIR = ./src/
 
-INCLUDES_DIR = includes
+INCLUDES_DIR = ./includes/
 
-MLX= minilibx
+CFLAGS = -Wall -Werror -Wextra -I../
 
-LIBFT = libft
+SRC_FILES = ft_printf.c \
+	handle.c \
+	main_flags.c \
+	utils.c
 
-CFLAGS = -Wall -Werror -Wextra -I${INCLUDES_DIR} -I${MLX} -I${LIBFT} -g
-
-LDFLAGS = -L${MLX} -L${LIBFT} -lmlx_Linux -lXext -lX11 -lm -lbsd -lft
-
-LIBFT_TARGET = ${LIBFT}/libft.a
-
-MLX_TARGET = ${MLX}/libmlx.a
-
-SRC_FILES = main.c \
-			utils.c
-
-NAME = so_long
+NAME = libftprintf.a
 
 SRC = ${addprefix ${SRC_DIR}, ${SRC_FILES}}
 
@@ -40,19 +32,12 @@ OBJS = ${SRC:.c=.o}
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS} ${MLX_TARGET} ${LIBFT_TARGET}
-	${CC} ${CFLAGS} ${OBJS} ${LDFLAGS} -o ${NAME}
+${NAME}: ${OBJS}
+	ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
-${MLX_TARGET}:
-	make -C ${MLX}
-
-${LIBFT_TARGET}:
-	make -C ${LIBFT}
-
 clean:
-	make clean -C ${MLX}
 	rm -f ${OBJS}
 
 fclean: clean
