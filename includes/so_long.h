@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 15:52:22 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/13 17:19:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ typedef struct s_map_data
 void	sl_error_exit(int code, char *message);
 
 void	sl_parse_arg(char *arg);
+
+char	**sl_get_map(char *path);
+
+int		sl_get_height(char *path);
 
 #endif
