@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/13 16:18:03 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/14 11:17:30 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ MLX_TARGET = ${MLX}/libmlx.a
 
 SRC_FILES = main.c \
 			utils.c \
-			map.c
+			map.c \
+			parse.c \
+			check.c
 
 NAME = so_long
 

@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:54:01 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 15:53:16 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 11:31:00 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,24 @@ void	sl_parse_arg(char *arg)
 	if (ft_strncmp(arg + arg_size - 4, ".ber", 4) != 0)
 		sl_error_exit(EXIT_FAILURE, "Please enter a valid map.");
 	return ;
+}
+
+void	sl_clear_map(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+		free(array[i++]);
+	free(array);
+}
+
+int	sl_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
 }

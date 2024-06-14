@@ -6,13 +6,13 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:48:22 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/13 17:33:01 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 11:42:03 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		sl_get_height(char *path)
+int	sl_get_height(char *path)
 {
 	int		fd;
 	char	buf;
@@ -28,7 +28,7 @@ int		sl_get_height(char *path)
 			height++;
 	}
 	close(fd);
-	return (height);
+	return (height + 1);
 }
 
 char	**sl_get_map(char *path)
@@ -37,9 +37,12 @@ char	**sl_get_map(char *path)
 	char	**table;
 	int		i;
 	int		fd;
+	int		height;
 
 	i = 0;
-	table = (char **)malloc(sizeof(char *) * (sl_get_height(path)));
+	height = sl_get_height(path);
+	table = (char **)malloc(sizeof(char *) * (height));
+	line = NULL;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		sl_error_exit(EXIT_FAILURE, "Map not found!");

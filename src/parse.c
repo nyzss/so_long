@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 11:28:13 by okoca            ###   ########.fr       */
+/*   Created: 2024/06/14 10:40:13 by okoca             #+#    #+#             */
+/*   Updated: 2024/06/14 11:40:32 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+int	sl_count_char(char *str, char c)
 {
-	char	**map;
-	int		i;
+	int	i;
+	int	count;
 
 	i = 0;
-	map = sl_get_map(av[1]);
-	if (ac != 2)
-		sl_error_exit(EXIT_FAILURE, "not enough arguments");
-	sl_parse_arg(av[1]);
-	while (map[i] != NULL)
+	count = 0;
+	while (str[i])
 	{
-		printf("line: %s", map[i]);
+		if (str[i] == c)
+			count++;
 		i++;
 	}
-	printf("\nhello: %s\n", av[1]);
-	sl_check_map(map);
-	sl_clear_map(map);
+	return (count);
+}
+
+t_map_data	*sl_parse_map(char **map)
+{
+	t_map_data	*map_data;
+	int			i;
+
+	i = 0;
+	map_data = NULL;
+	while (map[i] != NULL)
+	{
+		sl_count_char(map[i], 'C');
+		i++;
+	}
+	return (map_data);
 }
