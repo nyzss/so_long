@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:48:22 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 14:30:13 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 22:23:50 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ char	**sl_get_map(char *path)
 	}
 	table[i] = NULL;
 	i = 0;
-	while (table[i][ft_strlen(table[i])] == '\n')
+	while (table[i] && table[i][ft_strlen(table[i]) - 1] == '\n')
 	{
-		table[i][ft_strlen(table[i])] = '\0';
+		table[i][ft_strlen(table[i]) - 1] = '\0';
 		i++;
 	}
 	return (close(fd), table);

@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 16:09:50 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 22:13:25 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ void	sl_check_map(char **arr)
 	else if (sl_check_max_char(arr) != 0)
 	{
 		sl_clear_map(arr);
-		sl_error_exit(EXIT_FAILURE, "Map is not rectangular.");
+		sl_error_exit(EXIT_FAILURE, "Map contains more than 1 player or exit.");
 	}
 }
