@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 11:28:13 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 15:35:11 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	main(int ac, char **av)
 	sl_parse_arg(av[1]);
 	while (map[i] != NULL)
 	{
-		printf("line: %s", map[i]);
+		printf("line: %s\n", map[i]);
 		i++;
 	}
-	printf("\nhello: %s\n", av[1]);
+	printf("\nmap link: %s\n", av[1]);
 	sl_check_map(map);
 	sl_clear_map(map);
 }

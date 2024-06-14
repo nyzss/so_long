@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/14 11:17:30 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/14 13:51:07 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_FILES = main.c \
 			utils.c \
 			map.c \
 			parse.c \
-			check.c
+			check.c \
+			check_closed.c
 
 NAME = so_long
 
