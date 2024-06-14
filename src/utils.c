@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:54:01 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 13:46:24 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/14 23:00:22 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,22 @@ void	sl_clear_map(char **array)
 	while (array[i] != NULL)
 		free(array[i++]);
 	free(array);
+}
+
+int	sl_strchr(char *str, int c)
+{
+	int				i;
+	unsigned char	cast;
+
+	i = 0;
+	cast = (unsigned char) c;
+	while (str[i])
+	{
+		if (str[i] == cast)
+			return (i);
+		i++;
+	}
+	if (str[i] == cast)
+		return (i);
+	return (0);
 }
