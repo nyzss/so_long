@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 21:28:33 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 22:54:06 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,19 @@ typedef struct s_map_data
 	char			**filled_map;
 }	t_map_data;
 
+typedef struct s_texture
+{
+	int		id;
+	int		height;
+	int		width;
+	void	*data;
+}	t_texture;
+
 typedef struct s_ctx
 {
 	void		*mlx;
 	void		*window;
-	void		*image;
+	t_texture	*textures;
 	t_map_data	*map_data;
 }	t_ctx;
 
