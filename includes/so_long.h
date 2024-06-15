@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 17:46:37 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 19:47:26 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ typedef struct s_map_data
 	char			**filled_map;
 }	t_map_data;
 
+typedef struct s_ctx
+{
+	void		*mlx;
+	void		*window;
+	t_map_data	*map_data;
+}	t_ctx;
+
+
 t_map_data		*sl_get_data(char **map);
 
 t_vec2			sl_find_pos(char **map, char c);
@@ -63,9 +71,10 @@ t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
 t_collectibles	sl_get_all_collectibles(char **map, int reset);
 
-void			sl_debug(t_map_data *map);
 
-void			sl_free_map(t_map_data *map);
+void			sl_free_all(t_ctx *ctx);
+
+void			sl_debug(t_map_data *map);
 
 void			sl_error_exit(int code, char *message);
 

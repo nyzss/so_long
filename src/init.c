@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 17:47:40 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 19:44:52 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ t_vec2	sl_find_next_pos(char **map, char c, int reset)
 		i++;
 	}
 	return (vec);
-}
-
-void	sl_free_map(t_map_data *map)
-{
-	free(map->collectibles.values);
-	sl_clear_map(map->map);
-	sl_clear_map(map->filled_map);
-	free(map);
 }
 
 t_map_data	*sl_get_data(char **map)

@@ -6,11 +6,23 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:44:09 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 17:52:41 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 19:45:12 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	sl_print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		printf("line: %s\n", map[i]);
+		i++;
+	}
+}
 
 void	sl_debug(t_map_data *map)
 {
