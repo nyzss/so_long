@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 10:50:44 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 12:44:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,35 @@ t_vec2	sl_find_pos(char **map, char c)
 	return (vec);
 }
 
+t_vec2	sl_find_next_pos(char **map, char c, int reset)
+{
+	static int	i;
+	static int	j;
+	t_vec2		vec;
+
+	if (reset == TRUE)
+		i = 0;
+	vec.pos_x = 0;
+	vec.pos_y = 0;
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			if (map[i][j] == c)
+			{
+				vec.pos_x = j;
+				vec.pos_y = i;
+				j++;
+				return (vec);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (vec);
+}
+
 t_map_data	*sl_get_data(char **map)
 {
 	t_vec2		player_pos;
@@ -48,5 +77,15 @@ t_map_data	*sl_get_data(char **map)
 	printf("Copy map: \n");
 	sl_print_map(filled_arr);
 	sl_clear_map(filled_arr);
+
+	t_collectibles collectibles = sl_get_all_collectibles(map);
+	int	i = 0;
+	while (i < collectibles.count)
+	{
+		printf("collectible: %d\nx: %d, y: %d\n", i,
+			 collectibles.values[i].pos_x, collectibles.values[i].pos_y);
+		i++;
+	}
+	free(collectibles.values);
 	return (map_data);
 }

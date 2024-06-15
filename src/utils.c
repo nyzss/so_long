@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:54:01 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 10:42:09 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 12:41:05 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,27 @@ int	sl_strchr(char *str, int c)
 	{
 		if (str[i] == cast)
 			return (i);
+		i++;
+	}
+	if (str[i] == cast)
+		return (i);
+	return (0);
+}
+
+int	sl_next_strchr(char *str, int c)
+{
+	static int		i;
+	unsigned char	cast;
+
+	cast = (unsigned char) c;
+	while (str[i])
+	{
+		if (str[i] == cast)
+		{
+			i++;
+			return (i - 1);
+			// return (i);
+		}
 		i++;
 	}
 	if (str[i] == cast)

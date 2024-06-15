@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 10:44:19 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 12:38:48 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,20 @@
 
 # define FILL_CHAR 'F'
 
+# define TRUE 1
+# define FALSE 0
+
 typedef struct s_vec2
 {
 	int	pos_x;
 	int	pos_y;
 }	t_vec2;
+
+typedef struct s_collectibles
+{
+	int		count;
+	t_vec2	*values;
+}	t_collectibles;
 
 typedef struct s_map_data
 {
@@ -46,36 +55,40 @@ typedef struct s_map_data
 	char	**filled_map;
 }	t_map_data;
 
-t_map_data	*sl_get_data(char **map);
+t_map_data		*sl_get_data(char **map);
 
-t_vec2		sl_find_pos(char **map, char c);
+t_vec2			sl_find_pos(char **map, char c);
 
-void		sl_error_exit(int code, char *message);
+t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
-void		sl_parse_arg(char *arg);
+t_collectibles	sl_get_all_collectibles(char **map);
 
-char		**sl_get_map(char *path);
+void			sl_error_exit(int code, char *message);
 
-int			sl_get_height(char *path);
+void			sl_parse_arg(char *arg);
 
-void		sl_clear_map(char **array);
+char			**sl_get_map(char *path);
 
-int			sl_count_char(char *str, char c);
+int				sl_get_height(char *path);
 
-void		sl_check_map(char **arr);
+void			sl_clear_map(char **array);
 
-int			sl_check_if_closed(char **arr);
+int				sl_count_char(char *str, char c);
 
-// void		sl_flood_fill(t_vec2 p_pos, char **arr);
+void			sl_check_map(char **arr);
 
-char		**sl_get_filled_map(t_vec2 p_pos, char **arr);
+int				sl_check_if_closed(char **arr);
 
-int			sl_strchr(char *str, int c);
+char			**sl_get_filled_map(t_vec2 p_pos, char **arr);
 
-void		sl_print_map(char **map);
+int				sl_strchr(char *str, int c);
 
-int			sl_get_count(char **map, char c);
+void			sl_print_map(char **map);
 
-int			sl_check_if_path(t_vec2 pos, char **filled_map);
+int				sl_get_count(char **map, char c);
+
+int				sl_check_if_path(t_vec2 pos, char **filled_map);
+
+int				sl_next_strchr(char *str, int c);
 
 #endif
