@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 14:28:24 by okoca             #+#    #+#              #
-#    Updated: 2024/05/30 20:34:28 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/15 16:34:57 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,18 +30,19 @@ SRC = ${addprefix ${SRC_DIR}, ${SRC_FILES}}
 OBJS = ${SRC:.c=.o}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@echo "Building PRINTF: ${<}"
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	ar rc ${NAME} ${OBJS}
+	@ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
 clean:
-	rm -f ${OBJS}
+	@rm -f ${OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all
 

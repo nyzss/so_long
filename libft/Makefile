@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by okoca             #+#    #+#              #
-#    Updated: 2024/06/13 16:15:14 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/15 17:08:29 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,29 +60,47 @@ SRC = ft_atoi.c \
 	get_next_line.c \
 	get_next_line_utils.c
 
+BONUS_FILES = ft_lstnew_bonus.c \
+	ft_lstadd_front_bonus.c \
+	ft_lstsize_bonus.c \
+	ft_lstlast_bonus.c \
+	ft_lstadd_back_bonus.c \
+	ft_lstdelone_bonus.c \
+	ft_lstclear_bonus.c \
+	ft_lstiter_bonus.c \
+	ft_lstmap_bonus.c \
+	get_next_line.c \
+	get_next_line_utils.c
+
 NAME = libft.a
+
+SRC_BONUS = $(filter $(BONUS_FILES), $(SRC))
 
 OBJS = ${SRC:.c=.o}
 
 FT_PRINTF = ft_printf
 
 %.o: %.c
-	${CC} ${CFLAGS} $< -o ${<:.c=.o}
+	@if [ "$(filter $<, $(SRC_BONUS))" != "" ]; then \
+		echo "Building ${<}"; \
+	fi
+#	@echo "Building ${<}"
+	@${CC} ${CFLAGS} $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	make -C ${FT_PRINTF}
-	cp ${FT_PRINTF}/libftprintf.a ${NAME}
-	ar rc ${NAME} ${OBJS}
+	@make -C ${FT_PRINTF}
+	@cp ${FT_PRINTF}/libftprintf.a ${NAME}
+	@ar rc ${NAME} ${OBJS}
 
 all: ${NAME}
 
 clean:
-	rm -f ${OBJS}
-	make clean -C ${FT_PRINTF}
+	@rm -f ${OBJS}
+	@make clean -C ${FT_PRINTF}
 
 fclean: clean
-	make fclean -C ${FT_PRINTF}
-	rm -f ${NAME}
+	@make fclean -C ${FT_PRINTF}
+	@rm -f ${NAME}
 
 re: fclean all
 
