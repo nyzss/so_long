@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 19:47:26 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 20:32:33 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -31,6 +33,9 @@
 
 # define TRUE 1
 # define FALSE 0
+
+# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 640
 
 typedef struct s_vec2
 {
@@ -59,6 +64,7 @@ typedef struct s_ctx
 {
 	void		*mlx;
 	void		*window;
+	void		*image;
 	t_map_data	*map_data;
 }	t_ctx;
 
