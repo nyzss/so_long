@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 09:57:46 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 10:52:10 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,6 @@ int	sl_check_rectangular(char **arr)
 	return (0);
 }
 
-int	sl_get_count(char **map, char c)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == c)
-				count++;
-			j++;
-		}
-		i++;
-	}
-	return (count);
-}
-
 int	sl_check_max_char(char **arr)
 {
 	if (sl_get_count(arr, PLAYER_CHAR) != 1)
@@ -89,6 +67,25 @@ int	sl_check_max_char(char **arr)
 	else if (sl_get_count(arr, COLLECTIBLE_CHAR) < 1)
 		return (1);
 	return (0);
+}
+
+int	sl_check_available_path(char **arr)
+{
+	char	**filled_map;
+	t_vec2	p_pos;
+	t_vec2	e_pos;
+	int		invalid;
+
+	invalid = 0;
+	p_pos = sl_find_pos(arr, PLAYER_CHAR);
+	e_pos = sl_find_pos(arr, EXIT_CHAR);
+	filled_map = sl_get_filled_map(p_pos, arr);
+	if (sl_check_if_path(p_pos, filled_map) == 1)
+		invalid = 1;
+	else if (sl_check_if_path(e_pos, filled_map) == 1)
+		invalid = 1;
+	sl_clear_map(filled_map);
+	return (invalid);
 }
 
 void	sl_check_map(char **arr)
@@ -112,5 +109,10 @@ void	sl_check_map(char **arr)
 	{
 		sl_clear_map(arr);
 		sl_error_exit(EXIT_FAILURE, "Map contains more than 1 player or exit.");
+	}
+	else if (sl_check_available_path(arr) != 0)
+	{
+		sl_clear_map(arr);
+		sl_error_exit(EXIT_FAILURE, "No path found to exit/collectibles.");
 	}
 }

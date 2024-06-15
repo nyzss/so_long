@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/15 09:59:22 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/15 10:41:48 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRC_FILES = main.c \
 			check.c \
 			check_closed.c \
 			flood_fill.c \
-			init.c
+			init.c \
+			check_utils.c
 
 NAME = so_long
 

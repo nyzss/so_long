@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 09:59:54 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 10:44:19 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define EXIT_CHAR 'E'
 # define COLLECTIBLE_CHAR 'C'
 
+# define FILL_CHAR 'F'
+
 typedef struct s_vec2
 {
 	int	pos_x;
@@ -46,6 +48,8 @@ typedef struct s_map_data
 
 t_map_data	*sl_get_data(char **map);
 
+t_vec2		sl_find_pos(char **map, char c);
+
 void		sl_error_exit(int code, char *message);
 
 void		sl_parse_arg(char *arg);
@@ -62,10 +66,16 @@ void		sl_check_map(char **arr);
 
 int			sl_check_if_closed(char **arr);
 
-void		sl_flood_fill(t_vec2 p_pos, char **arr);
+// void		sl_flood_fill(t_vec2 p_pos, char **arr);
+
+char		**sl_get_filled_map(t_vec2 p_pos, char **arr);
 
 int			sl_strchr(char *str, int c);
 
 void		sl_print_map(char **map);
+
+int			sl_get_count(char **map, char c);
+
+int			sl_check_if_path(t_vec2 pos, char **filled_map);
 
 #endif

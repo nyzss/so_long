@@ -6,13 +6,11 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:30:44 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 10:00:11 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 10:36:14 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#define FILL_CHAR 'F'
 
 int	sl_handle_char(char *c)
 {
@@ -39,4 +37,25 @@ void	sl_flood_fill(t_vec2 p_pos, char **arr)
 	sl_flood_fill(new_pos, arr);
 	new_pos = (t_vec2){p_pos.pos_x + 1, p_pos.pos_y};
 	sl_flood_fill(new_pos, arr);
+}
+
+char	**sl_get_filled_map(t_vec2 p_pos, char **arr)
+{
+	int		i;
+	int		column;
+	char	**filled_arr;
+
+	i = 0;
+	column = 0;
+	while (arr[column])
+		column++;
+	filled_arr = (char **)malloc(sizeof(char *) * (column + 1));
+	while (i < column)
+	{
+		filled_arr[i] = ft_strdup(arr[i]);
+		i++;
+	}
+	filled_arr[i] = NULL;
+	sl_flood_fill(p_pos, filled_arr);
+	return (filled_arr);
 }

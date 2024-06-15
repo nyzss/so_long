@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 09:59:11 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 10:50:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int ac, char **av)
 	printf("\nmap link: %s\n", av[1]);
 	sl_check_map(map);
 	map_data = sl_get_data(map);
-	(void)map_data;
+	free(map_data);
 	sl_clear_map(map);
 }
