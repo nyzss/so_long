@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 15:56:52 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 17:46:37 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_map_data
 	t_vec2			player_pos;
 	t_vec2			exit_pos;
 	t_collectibles	collectibles;
-	int				map_h;
-	int				map_w;
+	int				height;
+	int				width;
 	char			**map;
 	char			**filled_map;
 }	t_map_data;
