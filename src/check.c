@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 22:30:37 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 09:57:46 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,36 @@ int	sl_check_rectangular(char **arr)
 	return (0);
 }
 
-int	sl_check_max_char(char **arr)
+int	sl_get_count(char **map, char c)
 {
 	int	i;
 	int	j;
+	int	count;
 
 	i = 0;
-	while (arr[i])
+	count = 0;
+	while (map[i])
 	{
 		j = 0;
-		while (arr[i][j])
+		while (map[i][j])
 		{
+			if (map[i][j] == c)
+				count++;
 			j++;
 		}
 		i++;
 	}
+	return (count);
+}
+
+int	sl_check_max_char(char **arr)
+{
+	if (sl_get_count(arr, PLAYER_CHAR) != 1)
+		return (1);
+	else if (sl_get_count(arr, EXIT_CHAR) != 1)
+		return (1);
+	else if (sl_get_count(arr, COLLECTIBLE_CHAR) < 1)
+		return (1);
 	return (0);
 }
 

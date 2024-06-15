@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:30:44 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 23:16:00 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 10:00:11 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 int	sl_handle_char(char *c)
 {
-	if (*c != FILL_CHAR && *c != WALL_CHAR && *c != EXIT_CHAR)
+	if (*c != FILL_CHAR && *c != WALL_CHAR
+		&& *c != EXIT_CHAR && *c != COLLECTIBLE_CHAR)
 	{
-		*c = 'F';
+		*c = FILL_CHAR;
 		return (1);
 	}
 	return (0);
@@ -26,24 +27,16 @@ int	sl_handle_char(char *c)
 
 void	sl_flood_fill(t_vec2 p_pos, char **arr)
 {
-	if (sl_handle_char(&(arr[p_pos.pos_y - 1][p_pos.pos_x])) == 1)
-	{
-		p_pos.pos_y -= 1;
-		sl_flood_fill(p_pos, arr);
-	}
-	if (sl_handle_char(&(arr[p_pos.pos_y + 1][p_pos.pos_x])) == 1)
-	{
-		p_pos.pos_y += 1;
-		sl_flood_fill(p_pos, arr);
-	}
-	if (sl_handle_char(&(arr[p_pos.pos_y][p_pos.pos_x - 1])) == 1)
-	{
-		p_pos.pos_x -= 1;
-		sl_flood_fill(p_pos, arr);
-	}
-	if (sl_handle_char(&(arr[p_pos.pos_y][p_pos.pos_x + 1])) == 1)
-	{
-		p_pos.pos_x += 1;
-		sl_flood_fill(p_pos, arr);
-	}
+	t_vec2	new_pos;
+
+	if (sl_handle_char(&(arr[p_pos.pos_y][p_pos.pos_x])) == 0)
+		return ;
+	new_pos = (t_vec2){p_pos.pos_x, p_pos.pos_y - 1};
+	sl_flood_fill(new_pos, arr);
+	new_pos = (t_vec2){p_pos.pos_x, p_pos.pos_y + 1};
+	sl_flood_fill(new_pos, arr);
+	new_pos = (t_vec2){p_pos.pos_x - 1, p_pos.pos_y};
+	sl_flood_fill(new_pos, arr);
+	new_pos = (t_vec2){p_pos.pos_x + 1, p_pos.pos_y};
+	sl_flood_fill(new_pos, arr);
 }

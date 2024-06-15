@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 23:03:40 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 09:59:54 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,37 @@ typedef struct s_vec2
 
 typedef struct s_map_data
 {
-	int		player_count;
-	int		collectibles;
-	int		exit;
-	int		p_x;
-	int		p_y;
-	int		height;
-	int		width;
+	t_vec2	player_pos;
+	t_vec2	exit_pos;
+	t_vec2	*collectibles;
+	int		map_h;
+	int		map_w;
 	char	**map;
+	char	**filled_map;
 }	t_map_data;
 
-void	sl_error_exit(int code, char *message);
+t_map_data	*sl_get_data(char **map);
 
-void	sl_parse_arg(char *arg);
+void		sl_error_exit(int code, char *message);
 
-char	**sl_get_map(char *path);
+void		sl_parse_arg(char *arg);
 
-int		sl_get_height(char *path);
+char		**sl_get_map(char *path);
 
-void	sl_clear_map(char **array);
+int			sl_get_height(char *path);
 
-int		sl_count_char(char *str, char c);
+void		sl_clear_map(char **array);
 
-void	sl_check_map(char **arr);
+int			sl_count_char(char *str, char c);
 
-int		sl_check_if_closed(char **arr);
+void		sl_check_map(char **arr);
 
-void	sl_flood_fill(t_vec2 p_pos, char **arr);
+int			sl_check_if_closed(char **arr);
 
-int		sl_strchr(char *str, int c);
+void		sl_flood_fill(t_vec2 p_pos, char **arr);
+
+int			sl_strchr(char *str, int c);
+
+void		sl_print_map(char **map);
 
 #endif
