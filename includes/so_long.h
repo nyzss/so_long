@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 15:38:48 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 15:56:52 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ typedef struct s_collectibles
 
 typedef struct s_map_data
 {
-	t_vec2	player_pos;
-	t_vec2	exit_pos;
-	t_vec2	*collectibles;
-	int		map_h;
-	int		map_w;
-	char	**map;
-	char	**filled_map;
+	t_vec2			player_pos;
+	t_vec2			exit_pos;
+	t_collectibles	collectibles;
+	int				map_h;
+	int				map_w;
+	char			**map;
+	char			**filled_map;
 }	t_map_data;
 
 t_map_data		*sl_get_data(char **map);
@@ -62,6 +62,10 @@ t_vec2			sl_find_pos(char **map, char c);
 t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
 t_collectibles	sl_get_all_collectibles(char **map, int reset);
+
+void			sl_debug(t_map_data *map);
+
+void			sl_free_map(t_map_data *map);
 
 void			sl_error_exit(int code, char *message);
 

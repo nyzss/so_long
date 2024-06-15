@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 15:39:08 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 15:58:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,25 @@ t_vec2	sl_find_next_pos(char **map, char c, int reset)
 	return (vec);
 }
 
+void	sl_free_map(t_map_data *map)
+{
+	free(map->collectibles.values);
+	sl_clear_map(map->map);
+	sl_clear_map(map->filled_map);
+	free(map);
+}
+
 t_map_data	*sl_get_data(char **map)
 {
-	t_vec2		player_pos;
 	t_map_data	*map_data;
 	char		**filled_arr;
 
 	map_data = malloc(sizeof(t_map_data));
-	player_pos = sl_find_pos(map, PLAYER_CHAR);
-	printf("pos_x: %d, pos_y: %d\n", player_pos.pos_x, player_pos.pos_y);
-	filled_arr = sl_get_filled_map(player_pos, map);
-	printf("Real map: \n");
-	sl_print_map(map);
-	printf("Copy map: \n");
-	sl_print_map(filled_arr);
-	sl_clear_map(filled_arr);
-
-	t_collectibles collectibles = sl_get_all_collectibles(map, TRUE);
-	int	i = 0;
-	while (i < collectibles.count)
-	{
-		printf("collectible: %d\nx: %d, y: %d\n", i,
-			 collectibles.values[i].pos_x, collectibles.values[i].pos_y);
-		i++;
-	}
-	free(collectibles.values);
+	map_data->collectibles = sl_get_all_collectibles(map, TRUE);
+	map_data->player_pos = sl_find_pos(map, PLAYER_CHAR);
+	map_data->exit_pos = sl_find_pos(map, EXIT_CHAR);
+	filled_arr = sl_get_filled_map(map_data->player_pos, map);
+	map_data->filled_map = filled_arr;
+	map_data->map = map;
 	return (map_data);
 }
