@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 12:44:58 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 15:39:08 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ t_vec2	sl_find_next_pos(char **map, char c, int reset)
 	static int	j;
 	t_vec2		vec;
 
+	vec = (t_vec2){0, 0};
 	if (reset == TRUE)
+	{
 		i = 0;
-	vec.pos_x = 0;
-	vec.pos_y = 0;
+		return (vec);
+	}
 	while (map[i])
 	{
 		while (map[i][j])
 		{
 			if (map[i][j] == c)
 			{
-				vec.pos_x = j;
-				vec.pos_y = i;
-				j++;
-				return (vec);
+				vec = (t_vec2){j, i};
+				return (j++, vec);
 			}
 			j++;
 		}
@@ -78,7 +78,7 @@ t_map_data	*sl_get_data(char **map)
 	sl_print_map(filled_arr);
 	sl_clear_map(filled_arr);
 
-	t_collectibles collectibles = sl_get_all_collectibles(map);
+	t_collectibles collectibles = sl_get_all_collectibles(map, TRUE);
 	int	i = 0;
 	while (i < collectibles.count)
 	{

@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 12:38:48 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 15:38:48 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec2			sl_find_pos(char **map, char c);
 
 t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
-t_collectibles	sl_get_all_collectibles(char **map);
+t_collectibles	sl_get_all_collectibles(char **map, int reset);
 
 void			sl_error_exit(int code, char *message);
 

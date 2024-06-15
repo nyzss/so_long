@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 10:52:10 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/15 15:38:49 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,26 @@ int	sl_check_max_char(char **arr)
 
 int	sl_check_available_path(char **arr)
 {
-	char	**filled_map;
-	t_vec2	p_pos;
-	t_vec2	e_pos;
-	int		invalid;
+	char			**filled_map;
+	t_vec2			e_pos;
+	int				invalid;
+	t_collectibles	collec;
+	int				i;
 
+	i = 0;
 	invalid = 0;
-	p_pos = sl_find_pos(arr, PLAYER_CHAR);
 	e_pos = sl_find_pos(arr, EXIT_CHAR);
-	filled_map = sl_get_filled_map(p_pos, arr);
-	if (sl_check_if_path(p_pos, filled_map) == 1)
+	filled_map = sl_get_filled_map(sl_find_pos(arr, PLAYER_CHAR), arr);
+	collec = sl_get_all_collectibles(arr, TRUE);
+	if (sl_check_if_path(e_pos, filled_map) == 1)
 		invalid = 1;
-	else if (sl_check_if_path(e_pos, filled_map) == 1)
-		invalid = 1;
+	while (i < collec.count)
+	{
+		if (sl_check_if_path(collec.values[i], filled_map))
+			invalid = 1;
+		i++;
+	}
+	free(collec.values);
 	sl_clear_map(filled_map);
 	return (invalid);
 }
