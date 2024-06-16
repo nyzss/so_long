@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:57:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 20:04:58 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:33:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,22 @@ int	sl_move_to_direction(t_ctx *ctx, int direction)
 	if (direction == UP
 		&& map[player_pos->y - 1][player_pos->x] != WALL_CHAR)
 		player_pos->y -= 1;
-	if (direction == DOWN
+	else if (direction == DOWN
 		&& map[player_pos->y + 1][player_pos->x] != WALL_CHAR)
 		player_pos->y += 1;
-	if (direction == LEFT
+	else if (direction == LEFT
 		&& map[player_pos->y][player_pos->x - 1] != WALL_CHAR)
 		player_pos->x -= 1;
-	if (direction == RIGHT
+	else if (direction == RIGHT
 		&& map[player_pos->y][player_pos->x + 1] != WALL_CHAR)
 		player_pos->x += 1;
+	else
+		return (0);
 	sl_check_if_on_collectibles(ctx, *player_pos);
 	sl_can_exit(ctx, *player_pos);
 	sl_render_tiles(ctx);
+	ctx->movement_count += 1;
+	sl_print_mov_count(ctx);
 	return (0);
 }
 

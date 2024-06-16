@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 20:06:07 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:33:15 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,13 @@ t_map_data	*sl_get_map_data(char *path)
 	map = sl_get_map(path);
 	sl_check_map(map);
 	map_data = sl_get_data(map);
-	sl_debug(map_data);
 	return (map_data);
+}
+
+int	sl_print_mov_count(t_ctx *ctx)
+{
+	ft_printf("Number of movement: %d\n", ctx->movement_count);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -61,6 +66,7 @@ int	main(int ac, char **av)
 	ctx.mlx = mlx_init();
 	ctx.window = mlx_new_window(ctx.mlx, ctx.map_data->width * TEXTURE_PIXEL,
 			ctx.map_data->height * TEXTURE_PIXEL, "not_so_long");
+	ctx.movement_count = 0;
 	sl_init_textures(&ctx);
 	sl_render_tiles(&ctx);
 	mlx_key_hook(ctx.window, sl_handle_keypress, &ctx);

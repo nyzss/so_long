@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:31:39 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:32:59 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_texture
 
 typedef struct s_ctx
 {
+	int			movement_count;
 	void		*mlx;
 	void		*window;
 	t_texture	*textures;
@@ -151,5 +152,7 @@ int				sl_get_count(char **map, char c);
 int				sl_check_if_path(t_vec2 pos, char **filled_map);
 
 int				sl_next_strchr(char *str, int c);
+
+int				sl_print_mov_count(t_ctx *ctx);
 
 #endif

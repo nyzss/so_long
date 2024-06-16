@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:44:09 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:07:33 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:28:53 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sl_print_map(char **map)
 	i = 0;
 	while (map[i] != NULL)
 	{
-		printf("line: %s\n", map[i]);
+		ft_printf("line: %s\n", map[i]);
 		i++;
 	}
 }
