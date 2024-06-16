@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:58:45 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 17:08:51 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	sl_free_all(t_ctx *ctx)
 	int	i;
 
 	i = 0;
+	mlx_loop_end(ctx->mlx);
 	if (ctx->window)
 		mlx_destroy_window(ctx->mlx, ctx->window);
 	if (ctx->textures)
@@ -28,7 +29,6 @@ int	sl_free_all(t_ctx *ctx)
 		}
 		free(ctx->textures);
 	}
-	mlx_loop_end(ctx->mlx);
 	mlx_destroy_display(ctx->mlx);
 	free(ctx->map_data->collectibles.values);
 	sl_clear_map(ctx->map_data->map);
