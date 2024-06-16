@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:40:03 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:59:26 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,20 @@ t_vec2			sl_find_pos(char **map, char c);
 t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
 t_collectibles	sl_get_all_collectibles(char **map, int reset);
+
+t_texture		sl_create_texture(t_ctx *ctx, char *texture_path);
+
+int				sl_init_textures(t_ctx *ctx);
+
+int				sl_render_tiles(t_ctx *ctx);
+
+int				sl_close_window(int keycode, t_ctx *ctx);
+
+int				sl_move_to_direction(t_ctx *ctx, int direction);
+
+int				sl_move_player(int kc, t_ctx *ctx);
+
+int				sl_handle_keypress(int keycode, t_ctx *ctx);
 
 int				sl_free_all(t_ctx *ctx);
 

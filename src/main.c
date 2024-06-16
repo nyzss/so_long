@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:43:55 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:58:45 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,121 +49,6 @@ t_map_data	*sl_get_map_data(char *path)
 	map_data = sl_get_data(map);
 	sl_debug(map_data);
 	return (map_data);
-}
-
-int	sl_close_window(int keycode, t_ctx *ctx)
-{
-	if (keycode == XK_Escape)
-	{
-		printf("\nupdated player pos: x: %d, y: %d\n",
-			ctx->map_data->player_pos.pos_x,
-			ctx->map_data->player_pos.pos_y);
-		sl_free_all(ctx);
-		exit(0);
-	}
-	return (0);
-}
-
-t_texture	sl_create_texture(t_ctx *ctx, char *texture_path)
-{
-	t_texture	new_texture;
-
-	new_texture.data = mlx_xpm_file_to_image(ctx->mlx, texture_path,
-			&(new_texture.width), &(new_texture.height));
-	return (new_texture);
-}
-
-int	sl_init_textures(t_ctx *ctx)
-{
-	ctx->textures = malloc(sizeof(t_texture) * TEXTURE_COUNT);
-	ctx->textures[WALL] = sl_create_texture(ctx, WALL_TEXTURE);
-	ctx->textures[GROUND] = sl_create_texture(ctx, GROUND_TEXTURE);
-	ctx->textures[PLAYER] = sl_create_texture(ctx, PLAYER_TEXTURE);
-	ctx->textures[COLLECTIBLE] = sl_create_texture(ctx, COLLECTIBLE_TEXTURE);
-	ctx->textures[EXIT] = sl_create_texture(ctx, EXIT_TEXTURE);
-	return (0);
-}
-
-int	sl_render_tiles(t_ctx *ctx)
-{
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-
-	i = 0;
-	y = 0;
-	while (i < ctx->map_data->height)
-	{
-		j = 0;
-		x = 0;
-		while (j < ctx->map_data->width)
-		{
-			if (ctx->map_data->map[i][j] == WALL_CHAR)
-				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[WALL].data, x, y);
-			if (ctx->map_data->map[i][j] == EMPTY_CHAR
-				|| ctx->map_data->map[i][j] == PLAYER_CHAR)
-				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[GROUND].data, x, y);
-			if (ctx->map_data->map[i][j] == COLLECTIBLE_CHAR)
-				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[COLLECTIBLE].data, x, y);
-			if (ctx->map_data->map[i][j] == EXIT_CHAR)
-				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[EXIT].data, x, y);
-			if (ctx->map_data->player_pos.pos_x == j
-				&& ctx->map_data->player_pos.pos_y == i)
-				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[PLAYER].data, x, y);
-			x += ctx->textures[0].width;
-			j++;
-		}
-		y += ctx->textures[0].height;
-		i++;
-	}
-	return (0);
-}
-int	sl_move_to_direction(t_ctx *ctx, int direction)
-{
-	t_vec2	*player_pos;
-	char	**map;
-
-	map = ctx->map_data->map;
-	player_pos = &(ctx->map_data->player_pos);
-	if (direction == UP
-		&& map[player_pos->pos_y - 1][player_pos->pos_x] != WALL_CHAR)
-		player_pos->pos_y -= 1;
-	if (direction == DOWN
-		&& map[player_pos->pos_y + 1][player_pos->pos_x] != WALL_CHAR)
-		player_pos->pos_y += 1;
-	if (direction == LEFT
-		&& map[player_pos->pos_y][player_pos->pos_x - 1] != WALL_CHAR)
-		player_pos->pos_x -= 1;
-	if (direction == RIGHT
-		&& map[player_pos->pos_y][player_pos->pos_x + 1] != WALL_CHAR)
-		player_pos->pos_x += 1;
-	return (0);
-}
-
-int	sl_move_player(int kc, t_ctx *ctx)
-{
-	if (kc == XK_w || kc == XK_W)
-		sl_move_to_direction(ctx, UP);
-	if (kc == XK_a || kc == XK_A)
-		sl_move_to_direction(ctx, LEFT);
-	if (kc == XK_s || kc == XK_S)
-		sl_move_to_direction(ctx, DOWN);
-	if (kc == XK_d || kc == XK_D)
-		sl_move_to_direction(ctx, RIGHT);
-	return (0);
-}
-
-int	sl_handle_keypress(int keycode, t_ctx *ctx)
-{
-	sl_move_player(keycode, ctx);
-	sl_close_window(keycode, ctx);
-	return (0);
 }
 
 int	main(int ac, char **av)
