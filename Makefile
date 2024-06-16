@@ -6,7 +6,7 @@
 #    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 19:32:31 by okoca             #+#    #+#              #
-#    Updated: 2024/06/16 17:08:15 by okoca            ###   ########.fr        #
+#    Updated: 2024/06/16 18:02:36 by okoca            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRC_FILES = main.c \
 			init.c \
 			check_utils.c \
 			debug.c \
-			key.c \
+			move.c \
 			render.c
 
 NAME = so_long
