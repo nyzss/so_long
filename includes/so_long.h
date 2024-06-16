@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 22:54:06 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 09:50:54 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 
 # include "mlx.h"
 # include "libft.h"
+
+# define WALL_TEXTURE "./textures/left.xpm"
+# define GROUND_TEXTURE "./textures/ground.xpm"
+# define PLAYER_TEXTURE "./textures/character.xpm"
 
 # define PLAYER_CHAR 'P'
 # define EMPTY_CHAR '0'
@@ -76,7 +80,6 @@ typedef struct s_ctx
 	t_map_data	*map_data;
 }	t_ctx;
 
-
 t_map_data		*sl_get_data(char **map);
 
 t_vec2			sl_find_pos(char **map, char c);
@@ -84,7 +87,6 @@ t_vec2			sl_find_pos(char **map, char c);
 t_vec2			sl_find_next_pos(char **map, char c, int reset);
 
 t_collectibles	sl_get_all_collectibles(char **map, int reset);
-
 
 int				sl_free_all(t_ctx *ctx);
 
