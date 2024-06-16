@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:57:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:32:27 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 19:01:12 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	sl_handle_keypress(int keycode, t_ctx *ctx)
 
 int	sl_check_if_on_collectibles(t_ctx *ctx, t_vec2 player)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < ctx->map_data->collectibles.count)
 	{
-		if (player.x == ctx->map_data->collectibles.values[i].x)
+		if (ctx->map_data->collectibles.values[i].collected == 0
+			&& player.x == ctx->map_data->collectibles.values[i].x)
 		{
 			if (player.y == ctx->map_data->collectibles.values[i].y)
 			{
@@ -36,6 +37,20 @@ int	sl_check_if_on_collectibles(t_ctx *ctx, t_vec2 player)
 			}
 		}
 		i++;
+	}
+	return (0);
+}
+
+int	sl_can_exit(t_ctx *ctx, t_vec2 player)
+{
+	if (ctx->map_data->collectibles.collected
+		== ctx->map_data->collectibles.count)
+	{
+		if (player.x == ctx->map_data->exit_pos.x
+			&& player.y == ctx->map_data->exit_pos.y)
+		{
+			sl_free_exit(ctx);
+		}
 	}
 	return (0);
 }
@@ -60,6 +75,7 @@ int	sl_move_to_direction(t_ctx *ctx, int direction)
 		&& map[player_pos->y][player_pos->x + 1] != WALL_CHAR)
 		player_pos->x += 1;
 	sl_check_if_on_collectibles(ctx, *player_pos);
+	sl_can_exit(ctx, *player_pos);
 	return (0);
 }
 
