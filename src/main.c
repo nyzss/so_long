@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:13:03 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:37:59 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	sl_init_textures(t_ctx *ctx)
 	ctx->textures[WALL] = sl_create_texture(ctx, WALL_TEXTURE);
 	ctx->textures[GROUND] = sl_create_texture(ctx, GROUND_TEXTURE);
 	ctx->textures[PLAYER] = sl_create_texture(ctx, PLAYER_TEXTURE);
+	ctx->textures[COLLECTIBLE] = sl_create_texture(ctx, COLLECTIBLE_TEXTURE);
+	ctx->textures[EXIT] = sl_create_texture(ctx, EXIT_TEXTURE);
 	return (0);
 }
 
@@ -99,15 +101,20 @@ int	sl_render_tiles(t_ctx *ctx)
 		{
 			if (ctx->map_data->map[i][j] == WALL_CHAR)
 				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[0].data, x, y);
-			if (ctx->map_data->map[i][j] == EMPTY_CHAR
-				|| ctx->map_data->map[i][j] == PLAYER_CHAR)
+					ctx->window, ctx->textures[WALL].data, x, y);
+			if (ctx->map_data->map[i][j] == EMPTY_CHAR)
 				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[1].data, x, y);
+					ctx->window, ctx->textures[GROUND].data, x, y);
+			if (ctx->map_data->map[i][j] == COLLECTIBLE_CHAR)
+				mlx_put_image_to_window(ctx->mlx,
+					ctx->window, ctx->textures[COLLECTIBLE].data, x, y);
+			if (ctx->map_data->map[i][j] == EXIT_CHAR)
+				mlx_put_image_to_window(ctx->mlx,
+					ctx->window, ctx->textures[EXIT].data, x, y);
 			if (ctx->map_data->player_pos.pos_x == j
 				&& ctx->map_data->player_pos.pos_y == i)
 				mlx_put_image_to_window(ctx->mlx,
-					ctx->window, ctx->textures[2].data, x, y);
+					ctx->window, ctx->textures[PLAYER].data, x, y);
 			x += ctx->textures[0].width;
 			j++;
 		}

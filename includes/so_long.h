@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:03:59 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:36:40 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@
 
 # define WALL_TEXTURE "./textures/left.xpm"
 # define GROUND_TEXTURE "./textures/ground.xpm"
-# define PLAYER_TEXTURE "./textures/character.xpm"
+# define PLAYER_TEXTURE "./textures/player.xpm"
+# define COLLECTIBLE_TEXTURE "./textures/collectible.xpm"
+# define EXIT_TEXTURE "./textures/exit.xpm"
+# define TEXTURE_COUNT 5
 
 # define PLAYER_CHAR 'P'
 # define EMPTY_CHAR '0'
@@ -40,7 +43,6 @@
 
 # define WINDOW_HEIGHT 600
 # define WINDOW_WIDTH 640
-# define TEXTURE_COUNT 3
 
 # define UP 0
 # define DOWN 1
@@ -74,7 +76,9 @@ typedef enum e_tex_name
 {
 	WALL,
 	GROUND,
-	PLAYER
+	PLAYER,
+	COLLECTIBLE,
+	EXIT
 }	t_tex_name;
 
 typedef struct s_texture
