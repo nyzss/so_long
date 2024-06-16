@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:37:59 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:40:16 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ int	main(int ac, char **av)
 		sl_error_exit(EXIT_FAILURE, "not enough arguments");
 	ctx.map_data = sl_get_map_data(av[1]);
 	ctx.mlx = mlx_init();
-	ctx.window = mlx_new_window(ctx.mlx, ctx.map_data->width * 64,
-			ctx.map_data->height * 64, "not_so_long");
+	ctx.window = mlx_new_window(ctx.mlx, ctx.map_data->width * TEXTURE_PIXEL,
+			ctx.map_data->height * TEXTURE_PIXEL, "not_so_long");
 	sl_init_textures(&ctx);
 	mlx_loop_hook(ctx.mlx, sl_render_tiles, &ctx);
 	mlx_key_hook(ctx.window, sl_handle_keypress, &ctx);

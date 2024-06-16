@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:36:40 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:40:03 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define COLLECTIBLE_TEXTURE "./textures/collectible.xpm"
 # define EXIT_TEXTURE "./textures/exit.xpm"
 # define TEXTURE_COUNT 5
+# define TEXTURE_PIXEL 64
 
 # define PLAYER_CHAR 'P'
 # define EMPTY_CHAR '0'
