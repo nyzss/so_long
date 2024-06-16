@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:48:22 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/14 22:23:50 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:50:34 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	sl_get_height(char *path)
 
 	height = 1;
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		sl_error_exit(EXIT_FAILURE, "Map not found!");
 	while (read(fd, &buf, 1))
 	{
 		if (buf == '\n')
@@ -39,10 +37,10 @@ char	**sl_get_map(char *path)
 	int		fd;
 
 	i = 0;
-	table = (char **)malloc(sizeof(char *) * (sl_get_height(path)));
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		sl_error_exit(EXIT_FAILURE, "Map not found!");
+	table = (char **)malloc(sizeof(char *) * (sl_get_height(path)));
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

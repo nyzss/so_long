@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:44:09 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 20:28:53 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 21:17:46 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,10 @@ void	sl_debug(t_map_data *map)
 	ft_printf("exit_pos -> x: %d, y: %d\n",
 		map->exit_pos.x, map->exit_pos.y);
 	ft_printf("map info ->  height: %d, width: %d\n", map->height, map->width);
+}
+
+int	sl_print_mov_count(t_ctx *ctx)
+{
+	ft_printf("Number of movement: %d\n", ctx->movement_count);
+	return (0);
 }

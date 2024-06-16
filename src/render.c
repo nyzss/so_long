@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:53:15 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 20:26:47 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 21:20:49 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_texture	sl_create_texture(t_ctx *ctx, char *texture_path)
 int	sl_init_textures(t_ctx *ctx)
 {
 	ctx->textures = malloc(sizeof(t_texture) * TEXTURE_COUNT);
+	if (!ctx->textures)
+		return (-1);
 	ctx->textures[WALL] = sl_create_texture(ctx, WALL_TEXTURE);
 	ctx->textures[GROUND] = sl_create_texture(ctx, GROUND_TEXTURE);
 	ctx->textures[PLAYER] = sl_create_texture(ctx, PLAYER_TEXTURE);
