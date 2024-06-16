@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 09:50:54 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:03:59 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 
 # define WINDOW_HEIGHT 600
 # define WINDOW_WIDTH 640
+# define TEXTURE_COUNT 3
+
+# define UP 0
+# define DOWN 1
+# define LEFT 2
+# define RIGHT 3
 
 typedef struct s_vec2
 {
@@ -63,6 +69,13 @@ typedef struct s_map_data
 	char			**map;
 	char			**filled_map;
 }	t_map_data;
+
+typedef enum e_tex_name
+{
+	WALL,
+	GROUND,
+	PLAYER
+}	t_tex_name;
 
 typedef struct s_texture
 {

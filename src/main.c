@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 10:01:29 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:13:03 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int	sl_free_all(t_ctx *ctx)
 {
+	int	i;
+
+	i = 0;
 	if (ctx->window)
 		mlx_destroy_window(ctx->mlx, ctx->window);
 	if (ctx->textures)
 	{
-		mlx_destroy_image(ctx->mlx, ctx->textures[0].data);
-		mlx_destroy_image(ctx->mlx, ctx->textures[1].data);
-		mlx_destroy_image(ctx->mlx, ctx->textures[2].data);
+		while (i < TEXTURE_COUNT)
+		{
+			mlx_destroy_image(ctx->mlx, ctx->textures[i].data);
+			i++;
+		}
 		free(ctx->textures);
 	}
 	mlx_loop_end(ctx->mlx);
@@ -50,36 +55,40 @@ int	sl_close_window(int keycode, t_ctx *ctx)
 {
 	if (keycode == XK_Escape)
 	{
-		printf("\nupdated player pos: x: %d, y: %d\n", ctx->map_data->player_pos.pos_x, ctx->map_data->player_pos.pos_y);
+		printf("\nupdated player pos: x: %d, y: %d\n",
+			ctx->map_data->player_pos.pos_x,
+			ctx->map_data->player_pos.pos_y);
 		sl_free_all(ctx);
 		exit(0);
 	}
 	return (0);
 }
 
-void	sl_render_tiles(t_ctx *ctx)
+t_texture	sl_create_texture(t_ctx *ctx, char *texture_path)
 {
-	int 		i;
-	int 		j;
-	int			x;
-	int			y;
+	t_texture	new_texture;
 
-	ctx->textures = malloc(sizeof(t_texture) * 3);
-	ctx->textures[0].data = mlx_xpm_file_to_image(ctx->mlx,
-			WALL_TEXTURE,
-			&(ctx->textures[0].width), &(ctx->textures[0].height));
-	if (!(ctx->textures[0].data))
-		return ;
-	ctx->textures[1].data = mlx_xpm_file_to_image(ctx->mlx,
-			GROUND_TEXTURE,
-			&(ctx->textures[1].width), &(ctx->textures[1].height));
-	if (!(ctx->textures[1].data))
-		return ;
-	ctx->textures[2].data = mlx_xpm_file_to_image(ctx->mlx,
-			PLAYER_TEXTURE,
-			&(ctx->textures[2].width), &(ctx->textures[2].height));
-	if (!(ctx->textures[2].data))
-		return ;
+	new_texture.data = mlx_xpm_file_to_image(ctx->mlx, texture_path,
+			&(new_texture.width), &(new_texture.height));
+	return (new_texture);
+}
+
+int	sl_init_textures(t_ctx *ctx)
+{
+	ctx->textures = malloc(sizeof(t_texture) * TEXTURE_COUNT);
+	ctx->textures[WALL] = sl_create_texture(ctx, WALL_TEXTURE);
+	ctx->textures[GROUND] = sl_create_texture(ctx, GROUND_TEXTURE);
+	ctx->textures[PLAYER] = sl_create_texture(ctx, PLAYER_TEXTURE);
+	return (0);
+}
+
+int	sl_render_tiles(t_ctx *ctx)
+{
+	int		i;
+	int		j;
+	int		x;
+	int		y;
+
 	i = 0;
 	y = 0;
 	while (i < ctx->map_data->height)
@@ -95,7 +104,8 @@ void	sl_render_tiles(t_ctx *ctx)
 				|| ctx->map_data->map[i][j] == PLAYER_CHAR)
 				mlx_put_image_to_window(ctx->mlx,
 					ctx->window, ctx->textures[1].data, x, y);
-			if (ctx->map_data->player_pos.pos_x == j && ctx->map_data->player_pos.pos_y == i)
+			if (ctx->map_data->player_pos.pos_x == j
+				&& ctx->map_data->player_pos.pos_y == i)
 				mlx_put_image_to_window(ctx->mlx,
 					ctx->window, ctx->textures[2].data, x, y);
 			x += ctx->textures[0].width;
@@ -104,16 +114,40 @@ void	sl_render_tiles(t_ctx *ctx)
 		y += ctx->textures[0].height;
 		i++;
 	}
-	printf("x + y; %d\n", x + y);
+	return (0);
+}
+int	sl_move_to_direction(t_ctx *ctx, int direction)
+{
+	t_vec2	*player_pos;
+	char	**map;
+
+	map = ctx->map_data->map;
+	player_pos = &(ctx->map_data->player_pos);
+	if (direction == UP
+		&& map[player_pos->pos_y - 1][player_pos->pos_x] != WALL_CHAR)
+		player_pos->pos_y -= 1;
+	if (direction == DOWN
+		&& map[player_pos->pos_y + 1][player_pos->pos_x] != WALL_CHAR)
+		player_pos->pos_y += 1;
+	if (direction == LEFT
+		&& map[player_pos->pos_y][player_pos->pos_x - 1] != WALL_CHAR)
+		player_pos->pos_x -= 1;
+	if (direction == RIGHT
+		&& map[player_pos->pos_y][player_pos->pos_x + 1] != WALL_CHAR)
+		player_pos->pos_x += 1;
+	return (0);
 }
 
-int	sl_move_player(int keycode, t_ctx *ctx)
+int	sl_move_player(int kc, t_ctx *ctx)
 {
-	if (keycode == XK_d || keycode == XK_D)
-	{
-		printf("HERE\n\n");
-		ctx->map_data->player_pos.pos_x += 1;
-	}
+	if (kc == XK_w || kc == XK_W)
+		sl_move_to_direction(ctx, UP);
+	if (kc == XK_a || kc == XK_A)
+		sl_move_to_direction(ctx, LEFT);
+	if (kc == XK_s || kc == XK_S)
+		sl_move_to_direction(ctx, DOWN);
+	if (kc == XK_d || kc == XK_D)
+		sl_move_to_direction(ctx, RIGHT);
 	return (0);
 }
 
@@ -134,7 +168,8 @@ int	main(int ac, char **av)
 	ctx.mlx = mlx_init();
 	ctx.window = mlx_new_window(ctx.mlx, ctx.map_data->width * 64,
 			ctx.map_data->height * 64, "not_so_long");
-	sl_render_tiles(&ctx);
+	sl_init_textures(&ctx);
+	mlx_loop_hook(ctx.mlx, sl_render_tiles, &ctx);
 	mlx_key_hook(ctx.window, sl_handle_keypress, &ctx);
 	mlx_hook(ctx.window, DestroyNotify, StructureNotifyMask, sl_free_all, &ctx);
 	mlx_loop(ctx.mlx);
