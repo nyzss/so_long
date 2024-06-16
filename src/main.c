@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 17:20:56 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:06:07 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av)
 	ctx.window = mlx_new_window(ctx.mlx, ctx.map_data->width * TEXTURE_PIXEL,
 			ctx.map_data->height * TEXTURE_PIXEL, "not_so_long");
 	sl_init_textures(&ctx);
-	mlx_loop_hook(ctx.mlx, sl_render_tiles, &ctx);
+	sl_render_tiles(&ctx);
 	mlx_key_hook(ctx.window, sl_handle_keypress, &ctx);
 	mlx_hook(ctx.window, DestroyNotify,
 		StructureNotifyMask, sl_free_exit, &ctx);

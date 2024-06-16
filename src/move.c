@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:57:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 19:01:12 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:04:58 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	sl_move_to_direction(t_ctx *ctx, int direction)
 		player_pos->x += 1;
 	sl_check_if_on_collectibles(ctx, *player_pos);
 	sl_can_exit(ctx, *player_pos);
+	sl_render_tiles(ctx);
 	return (0);
 }
 

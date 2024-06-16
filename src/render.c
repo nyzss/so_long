@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:53:15 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:32:59 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 20:16:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,26 @@ void	sl_render_collectibles(t_ctx *ctx, int i, int j)
 	}
 }
 
-void	sl_render_single(t_ctx *ctx, int i, int j)
+void	sl_render_single(t_ctx *ctx, int i, int j, int track)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	x = j * TEXTURE_PIXEL;
 	y = i * TEXTURE_PIXEL;
-	mlx_put_image_to_window(ctx->mlx,
-		ctx->window, ctx->textures[GROUND].data, x, y);
-	if (ctx->map_data->map[i][j] == WALL_CHAR)
+	if (ctx->map_data->map[i][j] != WALL_CHAR
+		&& ctx->map_data->map[i][j] != EXIT_CHAR)
 		mlx_put_image_to_window(ctx->mlx,
-			ctx->window, ctx->textures[WALL].data, x, y);
-	if (ctx->map_data->map[i][j] == EXIT_CHAR)
-		mlx_put_image_to_window(ctx->mlx,
-			ctx->window, ctx->textures[EXIT].data, x, y);
+			ctx->window, ctx->textures[GROUND].data, x, y);
+	if (track == 0)
+	{
+		if (ctx->map_data->map[i][j] == WALL_CHAR)
+			mlx_put_image_to_window(ctx->mlx,
+				ctx->window, ctx->textures[WALL].data, x, y);
+		if (ctx->map_data->map[i][j] == EXIT_CHAR)
+			mlx_put_image_to_window(ctx->mlx,
+				ctx->window, ctx->textures[EXIT].data, x, y);
+	}
 	sl_render_collectibles(ctx, i, j);
 	if (ctx->map_data->player_pos.x == j
 		&& ctx->map_data->player_pos.y == i)
@@ -78,8 +83,9 @@ void	sl_render_single(t_ctx *ctx, int i, int j)
 
 int	sl_render_tiles(t_ctx *ctx)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
+	static int	track_render;
 
 	i = 0;
 	while (i < ctx->map_data->height)
@@ -87,10 +93,11 @@ int	sl_render_tiles(t_ctx *ctx)
 		j = 0;
 		while (j < ctx->map_data->width)
 		{
-			sl_render_single(ctx, i, j);
+			sl_render_single(ctx, i, j, track_render);
 			j++;
 		}
 		i++;
 	}
+	track_render = 1;
 	return (0);
 }
