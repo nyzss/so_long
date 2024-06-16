@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:40:16 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 16:43:55 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ int	sl_render_tiles(t_ctx *ctx)
 			if (ctx->map_data->map[i][j] == WALL_CHAR)
 				mlx_put_image_to_window(ctx->mlx,
 					ctx->window, ctx->textures[WALL].data, x, y);
-			if (ctx->map_data->map[i][j] == EMPTY_CHAR)
+			if (ctx->map_data->map[i][j] == EMPTY_CHAR
+				|| ctx->map_data->map[i][j] == PLAYER_CHAR)
 				mlx_put_image_to_window(ctx->mlx,
 					ctx->window, ctx->textures[GROUND].data, x, y);
 			if (ctx->map_data->map[i][j] == COLLECTIBLE_CHAR)
