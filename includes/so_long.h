@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:59:26 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 17:21:38 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,13 @@ int				sl_init_textures(t_ctx *ctx);
 
 int				sl_render_tiles(t_ctx *ctx);
 
-int				sl_close_window(int keycode, t_ctx *ctx);
-
 int				sl_move_to_direction(t_ctx *ctx, int direction);
 
 int				sl_move_player(int kc, t_ctx *ctx);
 
 int				sl_handle_keypress(int keycode, t_ctx *ctx);
 
-int				sl_free_all(t_ctx *ctx);
+int				sl_free_exit(t_ctx *ctx);
 
 void			sl_debug(t_map_data *map);
 

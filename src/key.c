@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:57:54 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:59:35 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 17:21:31 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,9 @@
 
 int	sl_handle_keypress(int keycode, t_ctx *ctx)
 {
-	sl_move_player(keycode, ctx);
-	sl_close_window(keycode, ctx);
-	return (0);
-}
-
-int	sl_close_window(int keycode, t_ctx *ctx)
-{
 	if (keycode == XK_Escape)
-	{
-		printf("\nupdated player pos: x: %d, y: %d\n",
-			ctx->map_data->player_pos.pos_x,
-			ctx->map_data->player_pos.pos_y);
-		sl_free_all(ctx);
-		exit(0);
-	}
+		sl_free_exit(ctx);
+	sl_move_player(keycode, ctx);
 	return (0);
 }
 

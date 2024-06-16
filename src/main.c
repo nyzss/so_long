@@ -6,13 +6,13 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 17:08:51 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 17:20:56 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	sl_free_all(t_ctx *ctx)
+int	sl_free_exit(t_ctx *ctx)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	sl_free_all(t_ctx *ctx)
 	sl_clear_map(ctx->map_data->filled_map);
 	free(ctx->map_data);
 	free(ctx->mlx);
-	return (0);
+	exit(0);
 }
 
 t_map_data	*sl_get_map_data(char *path)
@@ -64,7 +64,8 @@ int	main(int ac, char **av)
 	sl_init_textures(&ctx);
 	mlx_loop_hook(ctx.mlx, sl_render_tiles, &ctx);
 	mlx_key_hook(ctx.window, sl_handle_keypress, &ctx);
-	mlx_hook(ctx.window, DestroyNotify, StructureNotifyMask, sl_free_all, &ctx);
+	mlx_hook(ctx.window, DestroyNotify,
+		StructureNotifyMask, sl_free_exit, &ctx);
 	mlx_loop(ctx.mlx);
-	sl_free_all(&ctx);
+	return (0);
 }
