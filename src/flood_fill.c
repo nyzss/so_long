@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:30:44 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 23:06:40 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 18:19:45 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	sl_flood_fill(t_vec2 p_pos, char **arr)
 {
 	t_vec2	new_pos;
 
-	if (sl_handle_char(&(arr[p_pos.pos_y][p_pos.pos_x])) == 0)
+	if (sl_handle_char(&(arr[p_pos.y][p_pos.x])) == 0)
 		return ;
-	new_pos = (t_vec2){p_pos.pos_x, p_pos.pos_y - 1};
+	new_pos = (t_vec2){p_pos.x, p_pos.y - 1, 0};
 	sl_flood_fill(new_pos, arr);
-	new_pos = (t_vec2){p_pos.pos_x, p_pos.pos_y + 1};
+	new_pos = (t_vec2){p_pos.x, p_pos.y + 1, 0};
 	sl_flood_fill(new_pos, arr);
-	new_pos = (t_vec2){p_pos.pos_x - 1, p_pos.pos_y};
+	new_pos = (t_vec2){p_pos.x - 1, p_pos.y, 0};
 	sl_flood_fill(new_pos, arr);
-	new_pos = (t_vec2){p_pos.pos_x + 1, p_pos.pos_y};
+	new_pos = (t_vec2){p_pos.x + 1, p_pos.y, 0};
 	sl_flood_fill(new_pos, arr);
 }
 

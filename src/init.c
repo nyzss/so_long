@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 19:44:52 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 18:20:30 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_vec2	sl_find_pos(char **map, char c)
 	t_vec2	vec;
 
 	i = 0;
-	vec.pos_x = 0;
-	vec.pos_y = 0;
+	vec.x = 0;
+	vec.y = 0;
 	while (map[i])
 	{
 		if (sl_strchr(map[i], c) != 0)
 		{
-			vec.pos_x = sl_strchr(map[i], c);
-			vec.pos_y = i;
+			vec.x = sl_strchr(map[i], c);
+			vec.y = i;
 			return (vec);
 		}
 		i++;
@@ -39,7 +39,7 @@ t_vec2	sl_find_next_pos(char **map, char c, int reset)
 	static int	j;
 	t_vec2		vec;
 
-	vec = (t_vec2){0, 0};
+	vec = (t_vec2){0, 0, 0};
 	if (reset == TRUE)
 	{
 		i = 0;
@@ -51,7 +51,7 @@ t_vec2	sl_find_next_pos(char **map, char c, int reset)
 		{
 			if (map[i][j] == c)
 			{
-				vec = (t_vec2){j, i};
+				vec = (t_vec2){j, i, 0};
 				return (j++, vec);
 			}
 			j++;

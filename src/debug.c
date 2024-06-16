@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:44:09 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/15 23:06:35 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 18:07:33 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	sl_debug(t_map_data *map)
 
 	i = 0;
 	ft_printf("pos_x: %d, pos_y: %d\n",
-		map->player_pos.pos_x, map->player_pos.pos_y);
+		map->player_pos.x, map->player_pos.y);
 	ft_printf("Real map: \n");
 	sl_print_map(map->map);
 	ft_printf("Filled map: \n");
@@ -38,13 +38,13 @@ void	sl_debug(t_map_data *map)
 	while (i < map->collectibles.count)
 	{
 		ft_printf("collectible: %d -> x: %d, y: %d\n", i,
-			map->collectibles.values[i].pos_x,
-			map->collectibles.values[i].pos_y);
+			map->collectibles.values[i].x,
+			map->collectibles.values[i].y);
 		i++;
 	}
 	ft_printf("player_pos -> x: %d, y: %d\n",
-		map->player_pos.pos_x, map->player_pos.pos_y);
+		map->player_pos.x, map->player_pos.y);
 	ft_printf("exit_pos -> x: %d, y: %d\n",
-		map->exit_pos.pos_x, map->exit_pos.pos_y);
+		map->exit_pos.x, map->exit_pos.y);
 	ft_printf("map info ->  height: %d, width: %d\n", map->height, map->width);
 }

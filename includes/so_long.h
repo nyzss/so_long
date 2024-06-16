@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 17:21:38 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 18:31:39 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@
 
 typedef struct s_vec2
 {
-	int	pos_x;
-	int	pos_y;
+	int	x;
+	int	y;
+	int	collected;
 }	t_vec2;
 
 typedef struct s_collectibles
 {
 	int		count;
+	int		collected;
 	t_vec2	*values;
 }	t_collectibles;
 

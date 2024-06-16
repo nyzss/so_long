@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 10:41:33 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 16:59:57 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/16 18:32:00 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	sl_get_count(char **map, char c)
 
 int	sl_check_if_path(t_vec2 pos, char **filled_map)
 {
-	if (filled_map[pos.pos_y][pos.pos_x + 1] != FILL_CHAR
-		&& filled_map[pos.pos_y][pos.pos_x - 1] != FILL_CHAR
-		&& filled_map[pos.pos_y + 1][pos.pos_x] != FILL_CHAR
-		&& filled_map[pos.pos_y - 1][pos.pos_x] != FILL_CHAR)
+	if (filled_map[pos.y][pos.x + 1] != FILL_CHAR
+		&& filled_map[pos.y][pos.x - 1] != FILL_CHAR
+		&& filled_map[pos.y + 1][pos.x] != FILL_CHAR
+		&& filled_map[pos.y - 1][pos.x] != FILL_CHAR)
 		return (1);
 	return (0);
 }
@@ -59,9 +59,11 @@ t_collectibles	sl_get_all_collectibles(char **map, int reset)
 	while (i < max_collectible)
 	{
 		values[i] = sl_find_next_pos(map, COLLECTIBLE_CHAR, FALSE);
+		values[i].collected = 0;
 		i++;
 	}
 	collectibles.count = max_collectible;
 	collectibles.values = values;
+	collectibles.collected = 0;
 	return (collectibles);
 }
