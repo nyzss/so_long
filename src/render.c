@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:53:15 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 21:20:49 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 08:29:23 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	sl_render_single(t_ctx *ctx, int i, int j, int track)
 		if (ctx->map_data->map[i][j] == WALL_CHAR)
 			mlx_put_image_to_window(ctx->mlx,
 				ctx->window, ctx->textures[WALL].data, x, y);
-		if (ctx->map_data->map[i][j] == EXIT_CHAR)
-			mlx_put_image_to_window(ctx->mlx,
-				ctx->window, ctx->textures[EXIT].data, x, y);
 	}
+	if (ctx->map_data->map[i][j] == EXIT_CHAR)
+		mlx_put_image_to_window(ctx->mlx,
+			ctx->window, ctx->textures[EXIT].data, x, y);
 	sl_render_collectibles(ctx, i, j);
 	if (ctx->map_data->player_pos.x == j
 		&& ctx->map_data->player_pos.y == i)

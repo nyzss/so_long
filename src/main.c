@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:28:37 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 21:20:13 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 08:29:59 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	sl_free_exit(t_ctx *ctx)
 	exit(0);
 }
 
+// sl_debug(map_data);
 t_map_data	*sl_get_map_data(char *path)
 {
 	char		**map;
@@ -96,3 +97,6 @@ int	main(int ac, char **av)
 	mlx_loop(ctx.mlx);
 	return (0);
 }
+
+// ctx.window = mlx_new_window(ctx.mlx, 1920,
+// 		1080, "not_so_long");

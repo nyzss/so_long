@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:30:44 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:19:45 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 08:21:18 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	sl_handle_char(char *c)
 {
 	if (*c != FILL_CHAR && *c != WALL_CHAR
-		&& *c != EXIT_CHAR && *c != COLLECTIBLE_CHAR)
+		&& *c != EXIT_CHAR)
 	{
 		*c = FILL_CHAR;
 		return (1);
