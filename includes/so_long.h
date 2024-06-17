@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 13:29:12 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 20:48:00 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 11:00:54 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WALL_TEXTURE "./textures/left.xpm"
+# define WALL_TEXTURE "./textures/wall.xpm"
 # define GROUND_TEXTURE "./textures/ground.xpm"
 # define PLAYER_TEXTURE "./textures/player.xpm"
-# define COLLECTIBLE_TEXTURE "./textures/collectible.xpm"
+# define COLLECTIBLE_TEXTURE "./textures/collectibles.xpm"
 # define EXIT_TEXTURE "./textures/exit.xpm"
 # define TEXTURE_COUNT 5
-# define TEXTURE_PIXEL 64
+# define TEXTURE_PIXEL 48
 
 # define PLAYER_CHAR 'P'
 # define EMPTY_CHAR '0'
