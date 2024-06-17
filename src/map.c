@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:48:22 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/17 09:47:19 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 11:25:17 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	sl_get_height(char *path)
 		char_count++;
 	}
 	close(fd);
-	if (char_count == 0)
+	if (char_count == 0 || buf == '\n')
 		return (-1);
 	return (height + 1);
 }
