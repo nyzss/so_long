@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 10:41:33 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:59:55 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 09:50:35 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_collectibles	sl_get_all_collectibles(char **map, int reset)
 	i = 0;
 	max_collectible = sl_get_count(map, COLLECTIBLE_CHAR);
 	values = (t_vec2 *)malloc(sizeof(t_vec2) * (max_collectible));
+	if (values == NULL)
+		sl_clear_map(map);
 	collectibles.collected = 0;
 	while (i < max_collectible)
 	{

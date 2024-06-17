@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:30:44 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/17 08:21:18 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 09:51:23 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	**sl_get_filled_map(t_vec2 p_pos, char **arr)
 	while (arr[column])
 		column++;
 	filled_arr = (char **)malloc(sizeof(char *) * (column + 1));
+	if (!filled_arr)
+		sl_clear_map(arr);
 	while (i < column)
 	{
 		filled_arr[i] = ft_strdup(arr[i]);

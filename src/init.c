@@ -6,7 +6,7 @@
 /*   By: okoca <okoca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 09:42:47 by okoca             #+#    #+#             */
-/*   Updated: 2024/06/16 18:20:30 by okoca            ###   ########.fr       */
+/*   Updated: 2024/06/17 09:52:15 by okoca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ t_map_data	*sl_get_data(char **map)
 
 	height = 0;
 	map_data = malloc(sizeof(t_map_data));
+	if (!map_data)
+		sl_clear_map(map_data);
 	map_data->collectibles = sl_get_all_collectibles(map, TRUE);
 	map_data->player_pos = sl_find_pos(map, PLAYER_CHAR);
 	map_data->exit_pos = sl_find_pos(map, EXIT_CHAR);
